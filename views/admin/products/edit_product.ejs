@@ -1,0 +1,52 @@
+<%- include ('../../layouts/adminHeader') -%>
+<h2>Add Product</h2>
+<a href="/admin/products" class="btn btn-primary">Back to all products</a>
+<form action="/admin/products/edit-product/<%= products.slug %>" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" value="<%= products.title %> " class="form-control" placeholder="Title" id="">
+    </div>
+    <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea name="desc"  class="form-control"  placeholder="Description" cols="30" rows="10"><%= products.desc %> </textarea>
+    </div>
+    <div class="form-group">
+        <label for="title">Price</label>
+        <input type="text" name="price" value="<%= products.price %> " class="form-control" placeholder="Price" id="">
+    </div>
+    <div class="form-group">
+        <label for="desc">Category</label>
+        <select name="category"  class="form-control">
+            <% categories.forEach(category => { %>
+                <option selected="<%= products.category %> " value="<%= category.slug %> "><%= category.title %> </option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" name="image" class="form-control" id="img">
+        <img src="#" alt="" id="imgPreview"><br><br><br><br>
+        <img width="100" height="100" src="/product_images/<%= products.image %> " id="" alt="img">
+    </div>
+    <button type="submit" class="btn btn-info">Add Product</button>
+</form>
+<br><br><br><br>
+
+<script>
+    function readURL(input) {
+        if(input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $("#imgPreview").attr('src', e.target.result).width(100).height(100);   
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img").change(function() {
+        readURL(this);
+    }); 
+</script>
+
+<%- include ('../../layouts/adminFooter') -%> 

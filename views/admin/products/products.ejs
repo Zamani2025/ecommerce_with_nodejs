@@ -1,0 +1,44 @@
+<%- include ('../../layouts/adminHeader') -%>
+<h2>All Products</h2>
+<a href="/admin/products/add-product" class="btn btn-primary">Back to add a product</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Catgory</th>
+                <th>Product Image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.title %> </td>
+                        <td>$<%= parseFloat(product.price).toFixed(2) %> </td>
+                        <td><%= product.category %> </td>
+                        <td>
+                            <% if (product.image == "") { %>
+                                <img height="60" src="/images/noimage.png" alt="no-image">
+                            <% } else { %>
+                            <img width="60" src="/product_images/<%= product.image %>" alt="">
+                            <% } %>
+                        </td>
+                        <td>
+                            <a href="/admin/products/edit-product/<%= product.slug %> "><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td>
+                            <form action="/admin/products/delete-product/<%= product._id %>?_method=DELETE" method="post">
+                                <button style="border: none;" type="submit"><i class="fa fa-trash text-danger"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            
+        </tbody>
+    </table>
+
+<br><br><br><br>
+<%- include ('../../layouts/adminFooter') -%> 

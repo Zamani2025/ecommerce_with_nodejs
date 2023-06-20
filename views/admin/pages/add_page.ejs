@@ -1,0 +1,21 @@
+<%- include ('../../layouts/adminHeader') -%> 
+<h2>Add Page</h2>
+<a href="/admin/pages" class="btn btn-primary mb-4">Back to all pages</a><br><br>
+<form action="/admin/pages/add-page" method="post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" " class="form-control" placeholder="Title" id="">
+    </div>
+    <div class="form-group">
+        <label for="title">Slug</label>
+        <input type="text" name="slug" class="form-control" placeholder="Slug" id="">
+    </div>
+    <div class="form-group">
+        <label for="title">Content</label>
+        <textarea name="content" id="ta" class="form-control" placeholder="Description" cols="30" rows="10"> </textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Page</button>
+</form>
+<br><br><br><br>
+
+<%- include ('../../layouts/adminFooter') -%> 
